@@ -1,0 +1,23 @@
+@import './sass/main';
+
+.app {
+  background: url("/assets/bg-intro-desktop.png");
+  background-color: $background-blue;
+  background-position: center;
+  background-size: cover;
+  height:100%;
+  width:100%;
+  padding:4rem 0rem;
+  min-height: 90vh;
+}
+.herobox{
+	display: flex;
+  justify-content: space-between;
+	align-items: center;
+	width:90%;
+	margin:0 auto;
+	@media only screen and(max-width:850px){
+		flex-direction: column;
+	}
+
+}

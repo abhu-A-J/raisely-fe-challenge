@@ -1,0 +1,34 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; /* 1rem =10px */
+}
+
+body {
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+  font-weight: $normal;
+  box-sizing: border-box;
+ 
+  min-height:100vh;
+  overflow-x:hidden !important;
+  @media only screen and(max-width:600px){
+    background: url("/assets/bg-intro-mobile.png");
+    background-color: $background-blue;
+
+  }
+}
+
+a{
+  text-decoration: none;
+}
+
+ul,li{
+	list-style: none;
+}
