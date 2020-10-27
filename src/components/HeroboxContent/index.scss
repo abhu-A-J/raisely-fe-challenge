@@ -1,8 +1,25 @@
 @import "../../sass/main";
 
 .herobox__content{
-	min-height: 50vh;
-	background:yellow;
 	flex: 40%;
 	width:40%;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0rem 2rem;
+}
+
+
+.main-heading{
+	font-size:4.5rem;
+	color:$white;
+	font-weight:$extra-bold;
+}
+
+.tagline{
+	font-size:1.8rem;
+	color:$white;
+	margin:2rem 0rem;
+
 }
