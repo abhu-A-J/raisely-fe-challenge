@@ -5,6 +5,7 @@ import "./index.scss";
 
 /*Child Components */
 import FormInput from "../FormInput";
+import Button from "../Button";
 
 /* Main Component */
 const SignUpForm=()=>{
@@ -63,9 +64,49 @@ const SignUpForm=()=>{
 						autoComplete="off"
 						value={firstName}
 						onChange={handleChange}
-						hasError={true}
+						hasError={firstNameError}
 						errorMessage={firstNameMessage}
 					/>
+
+					<FormInput
+						type="text"
+						label="Last Name:"
+						id="lastName"
+						name="lastName"
+						placeholder="Enter your last name"
+						autoComplete="off"
+						value={lastName}
+						onChange={handleChange}
+						hasError={lastNameError}
+						errorMessage={lastNameMessage}
+					/>
+
+					<FormInput
+						type="email"
+						label="Email ID:"
+						id="email"
+						name="email"
+						placeholder="Enter your email"
+						autoComplete="off"
+						value={email}
+						onChange={handleChange}
+						hasError={emailError}
+						errorMessage={emailMessage}
+					/>
+
+					<FormInput
+						type="password"
+						label="Password:"
+						id="password"
+						name="password"
+						placeholder="Enter your password"
+						autoComplete="off"
+						value={password}
+						onChange={handleChange}
+						hasError={passwordError}
+						errorMessage={passwordMessage}
+					/>
+					<Button type="submit">Sign up</Button>
 				</form>
 			</div>
 		</div>
