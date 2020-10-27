@@ -25,5 +25,10 @@
 	&:hover{
 		background: rgba($green,0.8);
   }
+
+  &:disabled{
+    background:rgba($green,0.3);
+    cursor: unset;
+  }
   
 }

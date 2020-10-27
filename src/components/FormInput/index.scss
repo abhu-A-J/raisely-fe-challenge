@@ -9,6 +9,11 @@
 		position: relative;
 		display:flex;
 		flex-direction: column;
+		.loader-wrapper{
+			position: absolute;
+			top:50%;
+			right:5rem;
+		}
 	}
 
 	&__label{

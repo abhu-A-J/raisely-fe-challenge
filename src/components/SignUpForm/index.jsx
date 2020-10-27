@@ -1,4 +1,5 @@
 import React ,{useEffect, useState} from 'react';
+import { useAlert } from 'react-alert'
 
 /* Styling */
 import "./index.scss";
@@ -8,7 +9,11 @@ import FormInput from "../FormInput";
 import Button from "../Button";
 
 /* Utilities */
-import {validateName,validateEmail} from "../../utils/validation"
+import {validateName,validateEmail} from "../../utils/validation";
+
+/* API Method */
+import verifyEmailStatus from "../../api/verifyEmail";
+import signupUsers from "../../api/signupUser";
 
 /* Main Component */
 const SignUpForm=()=>{
@@ -38,13 +43,18 @@ const SignUpForm=()=>{
 	})
 
 
+	/* State for email Verification */
+	const [validating,setValidatingStatus]=useState(false);
+	const [emailTaken,setEmailTaken]=useState(false);
 	
 	/* Destructured States for the component */
 	const {firstName,lastName,email,password}=formData;
 	const {firstNameError,lastNameError,emailError,passwordError}=formDataError;
 	const {firstNameMessage,lastNameMessage,emailMessage,passwordMessage}=formErrorMessage;
 
-
+	/* Alert Component */
+	const alert=useAlert();
+	
 	/* Handle Change Method */
 	const handleChange=(e)=>{
 		setFormData(prevState=>{
@@ -86,8 +96,29 @@ const SignUpForm=()=>{
 		}
 
 		/* All validations are successful : Submission */
-		alert('Form is Submitted!')
-
+		async function postData(){
+			const status=await signupUsers({firstName,lastName,email,password});
+			if(status==='OK'){
+				alert.success('User Signed Up...');
+				setFormData({
+					email:'',
+					firstName:'',
+					lastName:'',
+					password:''
+				})
+			}
+			else{
+				alert.error('Oops! Something is broken, come back later!!');
+				setFormData({
+					email:'',
+					firstName:'',
+					lastName:'',
+					password:''
+				})
+			}
+		}
+		postData();
+		
 
 	}
 
@@ -136,9 +167,27 @@ const SignUpForm=()=>{
 
 	/* Effect to handle  on change validations for email */
 	useEffect(()=>{
+		const isEmailValid=validateEmail(email);
 		if(email.length>=1){
-			setError('emailError',!validateEmail(email));
+			setError('emailError',!isEmailValid);
 			setErrorMessage('emailMessage',"Oops! That doesn't seem right as an email.");
+
+			if(isEmailValid){
+				setValidatingStatus(true);
+				async function checkEmail(){
+					const result= await verifyEmailStatus(email);
+					const status=result.data.status;
+					setValidatingStatus(false);
+					if(status==='EXISTS'){
+						setError('emailError',true);
+						setErrorMessage('emailMessage','The email is already taken');
+						setEmailTaken(true);
+					}else{
+						setEmailTaken(false);
+					}
+				}
+				checkEmail();	
+			}
 		}
 		else{
 			setError('emailError',false);
@@ -205,6 +254,7 @@ const SignUpForm=()=>{
 						onChange={handleChange}
 						hasError={emailError}
 						errorMessage={emailMessage}
+						showLoader={validating}
 					/>
 
 					<FormInput
@@ -219,7 +269,7 @@ const SignUpForm=()=>{
 						hasError={passwordError}
 						errorMessage={passwordMessage}
 					/>
-					<Button type="submit">Sign up</Button>
+					<Button type="submit" disabled={validating || emailTaken}>Sign up</Button>
 				</form>
 			</div>
 		</div>
