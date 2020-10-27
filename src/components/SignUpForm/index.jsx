@@ -37,7 +37,9 @@ const SignUpForm=()=>{
 		passwordMessage:"Oops! Password cannot be empty!"
 	})
 
-	/* States for the component */
+
+	
+	/* Destructured States for the component */
 	const {firstName,lastName,email,password}=formData;
 	const {firstNameError,lastNameError,emailError,passwordError}=formDataError;
 	const {firstNameMessage,lastNameMessage,emailMessage,passwordMessage}=formErrorMessage;
@@ -52,6 +54,41 @@ const SignUpForm=()=>{
 				[name]:value
 			}
 		})
+	}
+
+	/* Method to handle form Submit */
+	const handleSubmit=(e)=>{
+		e.preventDefault();
+		
+		/* Check for empty fields */
+		if(firstName.trim().length===0){
+			setError('firstNameError',true);
+			setErrorMessage('firstNameMessage','First Name cannot be empty.')
+			return ;
+		}
+	
+		if(lastName.trim().length===0){
+			setErrorMessage('lastNameMessage','Last Name cannot be empty.')
+			setError('lastNameError',true);
+			return ;
+		}
+		
+		if(email.trim().length===0){
+			setError('emailError',true);
+			setErrorMessage('emailMessage','Email cannot be empty.')
+			return ;
+		}
+		
+		if(password.trim().length===0){
+			setError('passwordError',true);
+			setErrorMessage('passwordMessage','Password cannot be just spaces or empty.')
+			return;
+		}
+
+		/* All validations are successful : Submission */
+		alert('Form is Submitted!')
+
+
 	}
 
 	/* Method to handle setting of Error */
@@ -73,7 +110,6 @@ const SignUpForm=()=>{
 			}
 		})
 	}
-
 
 	/* Effect to handle  on change validations for firstName */
 	useEffect(()=>{
@@ -109,12 +145,29 @@ const SignUpForm=()=>{
 		}
 	},[email])
 	
-
+	/* Effect to handle on change validations for email */
+	useEffect(()=>{
+		if(password.length>=1){
+			if(password.trim().length===0){
+				setError('passwordError',true);
+				setErrorMessage('passwordMessage','Oops! Password cannot be just empty spaces!')
+			}
+			else{
+				setError('passwordError',false);
+			}
+		}
+		else{
+			setError('passwordError',false);
+		}
+		
+		
+		
+	},[password])
 
 	return (
 		<div className="herobox__signup">
 			<div className="form__container">
-				<form action="" className="form">
+				<form action="" className="form" onSubmit={handleSubmit}>
 					<FormInput
 						type="text"
 						label="First Name:"
