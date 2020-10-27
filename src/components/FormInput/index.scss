@@ -1,0 +1,64 @@
+@import "../../sass/main";
+
+
+.input{
+	&__group{
+		width: 90%;
+		margin:0 auto;
+		margin-bottom:0.5rem;
+		position: relative;
+		display:flex;
+		flex-direction: column;
+	}
+
+	&__label{
+		font-size:1.4rem;
+		margin:1rem 0rem;
+		color:$blue;
+		display:block;
+		font-weight:$bold;
+	}
+
+	&__value{
+		padding: 1rem 2.5rem;
+		border: 1px solid $grayish-blue;
+		outline: none;
+		width: 100%;
+		font-family: inherit;
+		font-size: 1.3rem;
+		font-weight: $bold;
+		color: $dark-blue;
+		border-radius: 0.6rem;
+		margin-top: 0rem;
+		&.error {
+			border: 2px solid $red;
+		}
+		&::placeholder{
+			color:rgba($grayish-blue,0.5);
+		}
+	}
+
+	&__error-icon{
+		width: 2rem;
+		position: absolute;
+		top: 60%;
+		right: 1rem;
+		z-index: 4;
+		transform: translateY(-50%);
+
+		&.hide{
+			opacity:0;
+		}
+	}
+}
+
+.validation-error{
+	color: $red;
+	text-align: right;
+	margin-top: 5px;
+	font-weight: $bold;
+
+	&.hide{
+		opacity:0;
+	}
+}

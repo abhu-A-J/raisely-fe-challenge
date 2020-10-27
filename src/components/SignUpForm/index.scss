@@ -1,8 +1,17 @@
 @import "../../sass/main";
 
 .herobox__signup{
-	background:pink;
-	min-height:50vh;
 	flex: 40%;
 	width:40%;
+}
+
+.form__container{
+	background: $white;
+  margin-top: 3rem;
+	border-radius: 0.8rem;
+	padding:2rem 0rem;
+	
+	.form{
+		width:100%;
+	}	
 }
