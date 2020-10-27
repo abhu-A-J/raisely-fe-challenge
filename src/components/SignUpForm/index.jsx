@@ -270,6 +270,10 @@ const SignUpForm=()=>{
 						errorMessage={passwordMessage}
 					/>
 					<Button type="submit" disabled={validating || emailTaken}>Sign up</Button>
+						<p className="terms-text">
+              By clicking the button, you are agreeing to our 
+              <span> <a href="#!"> Terms and Services</a> </span> 
+            </p>
 				</form>
 			</div>
 		</div>

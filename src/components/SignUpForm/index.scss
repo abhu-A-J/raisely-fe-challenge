@@ -3,10 +3,18 @@
 .herobox__signup{
 	flex: 40%;
 	width:40%;
+
+	@media only screen and(max-width:850px){
+		width:80%;
+		margin: 0 auto;
+	}
+	@media only screen and(max-width:550px){
+		width:100%;
+	}
 }
 
 .form__container{
-	background: $white;
+  background: $white;
   margin-top: 3rem;
 	border-radius: 0.8rem;
 	padding:2rem 0rem;
@@ -14,4 +22,18 @@
 	.form{
 		width:100%;
 	}	
+	.terms-text {
+		font-size: 1rem;
+		color: $grayish-blue;
+		text-align: center;
+		@media only screen and(max-width:500px){
+			text-justify: inter-word;
+			padding:0rem 1rem;
+		}
+		a {
+			color: $red;
+			font-weight: $bold;
+		}
+	}
 }
+

@@ -8,6 +8,17 @@
 	justify-content: center;
 	flex-direction: column;
 	padding: 0rem 2rem;
+
+	@media only screen and(max-width:850px){
+		width:80%;
+		margin: 0 auto;
+		text-align: center;
+		padding:0rem;
+	}
+
+	@media only screen and(max-width:550px){
+		width:100%;
+	}
 }
 
 
@@ -15,11 +26,22 @@
 	font-size:4.5rem;
 	color:$white;
 	font-weight:$extra-bold;
+	@media only screen and(max-width:850px){
+		font-size:3.5rem;
+	}
+	@media only screen and(max-width:475px){
+		font-size:3rem;
+	}
 }
 
 .tagline{
 	font-size:1.8rem;
 	color:$white;
 	margin:2rem 0rem;
-
+	@media only screen and(max-width:850px){
+		font-size:1.5rem;
+	}
+	@media only screen and(max-width:475px){
+		font-size:1.2rem;
+	}
 }

@@ -1,0 +1,24 @@
+@import "../../sass/main";
+
+footer{
+	background:$white;
+	margin-top:1rem;
+	.footer{
+		font-size:1.5rem;
+		text-align: center;
+		padding:2rem 0rem;
+		p{
+			@media only screen and(max-width:500px){
+				text-justify: inter-word;
+				padding:0rem 1.5rem;
+			}
+		}
+	}
+	.profile-link{
+		color:$red;
+		padding-left:0.8rem;
+		&:active,&:hover,&:focus{
+			color:$red;
+		}
+	}
+}
